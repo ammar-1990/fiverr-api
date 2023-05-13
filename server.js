@@ -7,6 +7,9 @@ import conversationRoute from './routes/conversation.route.js'
 import messageRoute from './routes/message.route.js'
 import orderRoute from './routes/order.route.js'
 import reviewRoute from './routes/review.route.js'
+import authRoute from './routes/auth.route.js'
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 const app = express();
 dotenv.config()
@@ -26,10 +29,28 @@ const connetction = async()=>{
     
       }
 }
+app.use(cors({origin:'http://localhost:3000',credentials:true}))
+app.use(cookieParser())
+app.use(express.json()
 // routes
-
+)
 app.use('/api/users',userRoute)
-app.use('/api/message',messageRoute)
+app.use('/api/auths',authRoute)
+app.use('/api/gigs',gigRoute)
+app.use('/api/orders',orderRoute)
+app.use('/api/converstions',conversationRoute)
+app.use('/api/messages',messageRoute)
+app.use('/api/reviews',reviewRoute)
+app.use('/api/reviews',authRoute)
+
+
+
+app.use((err,req,res,next)=>{
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || 'something went wrong'
+
+  return res.status(errorStatus).send(errorMessage)
+})
 
 
 

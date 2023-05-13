@@ -1,9 +1,11 @@
 import express from 'express'
+import { verifyToken } from '../middleware/jwt.js'
+import { deleteUser } from '../controllers/users.controllers.js'
+
 const router = express.Router()
 
-router.get('/test',(req,res)=>{
-    res.send('it works')
-})
+
+router.delete('/delete/:id',verifyToken,deleteUser)
 
 
 
