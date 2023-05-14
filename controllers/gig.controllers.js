@@ -1,5 +1,6 @@
 import Gig from "../models/gig.model.js";
 import { createError } from "../utils/createError.js";
+import mongoose from "mongoose";
 
 export const createGig = async (req, res, next) => {
   if (!req.isSeller)
@@ -33,6 +34,8 @@ export const deleteGig = async (req, res, next) => {
 export const getGig = async (req, res, next) => {
 
     try {
+        const valid = mongoose.Types.ObjectId.isValid(req.params.id)
+        if(!valid) return next(createError(404,'not valid gig id'))
         const gig = await Gig.findById(req.params.id)
         if(!gig) return next(createError(404,'gig does not exist'))
         res.status(201).json(gig)

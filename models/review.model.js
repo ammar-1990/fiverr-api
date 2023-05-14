@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    start:{
+    star:{
         type:Number,
         required:true,
         enum:[1,2,3,4,5]

@@ -41,7 +41,7 @@ app.use('/api/orders',orderRoute)
 app.use('/api/converstions',conversationRoute)
 app.use('/api/messages',messageRoute)
 app.use('/api/reviews',reviewRoute)
-app.use('/api/reviews',authRoute)
+
 
 
 
