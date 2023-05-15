@@ -23,7 +23,7 @@ export const register = async (req, res, next) => {
       process.env.JWT_KEY
     );
     const { password, ...info } = req.body;
-    res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
+    res.cookie("accessToken", token, { httpOnly: true }).status(200).json(info);
   } catch (err) {
     next(err);
   }

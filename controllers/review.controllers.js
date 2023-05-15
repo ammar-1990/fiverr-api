@@ -27,11 +27,12 @@ export const postReview = async(req,res,next)=>{
 if(req.isSeller) return next(createError(401,'sellers can not create reviews'))
 
 const review = {userId:req.userId,...req.body}
+console.log(review)
 
 
 try {
     const exist = await Review.findOne({gigId:req.body.gigId,userId:req.userId})
-    if(exist) return next(createError(401,'review already exist'))
+    if(exist) return next(createError(401,'review already exists'))
 await Review.create(review)
 await Gig.findByIdAndUpdate(req.body.gigId,{$inc:{totalStars:req.body.star,startNumber:1}})
 res.status(200).json(review)

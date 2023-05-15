@@ -29,10 +29,7 @@ const orderSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
-    isCompleted:{
-        type:String,
-        required:true
-    },
+  
 
 },{timestamps:true})
 
