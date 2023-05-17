@@ -3,9 +3,10 @@ import { createError } from "../utils/createError.js";
 import mongoose from "mongoose";
 
 export const createGig = async (req, res, next) => {
+  
   if (!req.isSeller)
     return next(createError(401, "only sellers can create gigs"));
-
+console.log(req.userId)
   try {
   const  newGig = await Gig.create({ userId: req.userId, ...req.body });
     res.status(201).json(newGig)
@@ -57,6 +58,7 @@ const filters = {
     try {
 
         const gigs = await Gig.find(filters).sort({[q.sort]:-1})
+
         res.status(201).json(gigs)
         
     } catch (err) {

@@ -55,8 +55,10 @@ export const getConversation = async (req, res, next) => {
 
 export const createConversation = async (req, res, next) => {
   try {
+
+    
     const newConversation = await Conversation.create({
-      id: req.isSeller ? req.userId + req.body.to : req.body.to + req.userId,
+      id: req.isSeller ? req.userId + req.body.to + "-" + req.body.gigId : req.body.to + req.userId + "-" + req.body.gigId,
       sellerId: req.isSeller ? req.userId : req.body.to,
       buyerId: req.isSeller ? req.body.to : req.userId,
       readBySeller: req.isSeller,
@@ -64,6 +66,7 @@ export const createConversation = async (req, res, next) => {
     });
 
     res.status(200).json(newConversation);
+
   } catch (error) {
     next(error);
   }
