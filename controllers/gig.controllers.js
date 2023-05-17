@@ -65,3 +65,17 @@ const filters = {
         next(err)
     }
 };
+
+
+
+export const getManyGigs = async (req,res,next)=>{
+
+    try {
+     
+        const gigs = await Gig.aggregate([{ $sample: { size: 7 } }]);
+
+        res.status(200).json(gigs)
+    } catch (error) {
+        next(error)
+    }
+}

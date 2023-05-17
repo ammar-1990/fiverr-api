@@ -4,7 +4,7 @@ import { deleteUser, getUser } from '../controllers/users.controllers.js'
 
 const router = express.Router()
 
-router.get('/:id',verifyToken,getUser)
+router.get('/:id',getUser)
 router.delete('/delete/:id',verifyToken,deleteUser)
 
 
