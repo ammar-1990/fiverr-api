@@ -32,7 +32,7 @@ const connetction = async()=>{
 }
 
 
-app.use(cors({origin:'https://6464d4317ca2dc000831f3c6--inspiring-cranachan-f783e0.netlify.app',credentials:true}))
+app.use(cors({origin:'https://inspiring-cranachan-f783e0.netlify.app',credentials:true}))
 app.use(cookieParser())
 app.use(express.json()
 // routes
